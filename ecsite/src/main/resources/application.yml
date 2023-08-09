@@ -1,0 +1,36 @@
+#application.yml - アプリの実行中の設定（主に外部ツールとの接続やログ関係などを設定する）
+
+
+spring:
+  thymeleaf:
+    cache: false
+  jmx:
+    enabled: false
+
+
+#> データベース接続の各種設定
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ecdb?serverTimezone=Asia/Tokyo
+    username: root
+    
+    
+mybatis:
+  configuration:
+    mapUnderscoreToCamelCase: true
+  mapper-locations:
+    - classpath*:/jp.co.internous/ecsite/model/mapper/**/*.xml
+    #< SQLを記述するxmlファイルの配置場所。javaのmapperが配置されている場所と完全に一致させる必要アリ
+
+
+#> エラーや不具合解決のためのログの、出力レベルを設定
+logging:
+  level:
+    org:
+      springframework: WARN
+    jp:
+      co:
+        internous:
+          ecsite:
+            model:
+              mapper: DEBUG
